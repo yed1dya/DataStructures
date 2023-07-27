@@ -1,6 +1,3 @@
-package binarySearch;
-
-
 public class MyLibrary {
 /**
  * print character array

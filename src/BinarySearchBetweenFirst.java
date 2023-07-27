@@ -1,5 +1,3 @@
-package binarySearch;
-
 public class BinarySearchBetweenFirst {
 	public static int binarySearchBetween(int []arr, int value){
 		/**

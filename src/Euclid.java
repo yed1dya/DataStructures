@@ -1,4 +1,3 @@
-package recursion;
 /*************************************************************************
  *  Compilation:  javac Euclid.java
  *  Execution:    java Euclid p q

@@ -1,5 +1,3 @@
-package recursion;
-
 public class Mystery {
 	public static String mystery(String s){
 		int len = s.length();
