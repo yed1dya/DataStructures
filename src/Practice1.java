@@ -1,9 +1,13 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Practice1 {
     public static void main(String[] args) {
         String[] w = {"be", "be", "not", "or", "to", "to", "to"};
         Q2(w);
         int[] arr = {1, 8, 3, 6, 2, 9};
-        System.out.println(gcd2(136, 42));
+        //System.out.println(gcd2(136, 42));
+        //fun(10000);
     }
 
     public static long gcd2(long x, long y) {
@@ -36,29 +40,39 @@ public class Practice1 {
     }
 
     public static void Q2(String[] words){
-        if(words.length==0) return;
-        if(words.length==1) System.out.println("1");;
+        if(words==null || words.length==0){ System.out.println("[0]"); return; }
+        if(words.length==1){ System.out.println("[1]"); return; }
         String t = words[0];
-        String ans = "";
-        int count=1;
+        int[] tempArr = new int[words.length];
+        int count=1, place = 0;
         for(int i=1; i<words.length; i++){
             if(words[i].equals(t)) count++;
             else{
-                ans += count + " ";
+                tempArr[place] = count;
                 count = 1;
+                place++;
             }
             t = words[i];
         }
-        ans += count;
-        System.out.println(ans);
+        tempArr[place] = count;
+        int[] ans = new int[place+1];
+        for(int i=0; i<=place; i++){
+            ans[i] = tempArr[i];
+        }
+        System.out.println(Arrays.toString(tempArr));
+        System.out.println(Arrays.toString(ans));
     }
 
     public static void Q3(String[] words){
         /*
-        find longest word
+        find the longest word
         sort by first letter
         ...
         sort by last letter
          */
+    }
+
+    public static void Q4(String[] words){
+        ArrayList<String> tempArr = new ArrayList<>();
     }
 }
