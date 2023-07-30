@@ -4,6 +4,10 @@ import java.util.Arrays;
 public class Practice1 {
     public static void main(String[] args) {
         String[] w = {"be", "be", "not", "or", "to", "to", "to"};
+        String[] h = {"be", "be", "be", "be","be", "be"};
+        String[] a = {"be", "add"};
+        Q2(a);
+        Q2(h);
         Q2(w);
         int[] arr = {1, 8, 3, 6, 2, 9};
         //System.out.println(gcd2(136, 42));
@@ -59,7 +63,6 @@ public class Practice1 {
         for(int i=0; i<=place; i++){
             ans[i] = tempArr[i];
         }
-        System.out.println(Arrays.toString(tempArr));
         System.out.println(Arrays.toString(ans));
     }
 
