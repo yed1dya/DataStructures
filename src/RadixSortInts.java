@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class RadixSort {
+public class RadixSortInts {
     public static void main(String[] args) {
         int[] arr = {34, -55, 0, 65, -35, 0, 32, -456, -156, 464345, 44, 2435};
         radixSort(arr);

@@ -76,6 +76,7 @@ public class Practice1 {
     }
 
     public static void Q4(String[] words){
-        ArrayList<String> tempArr = new ArrayList<>();
+
     }
+
 }
