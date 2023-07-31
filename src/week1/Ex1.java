@@ -1,3 +1,5 @@
+package week1;
+
 /**
  * @author 207404997
  */

@@ -1,9 +1,11 @@
+package week1;
+
 /*************************************************************************
- *  Compilation:  javac Euclid.java
- *  Execution:    java Euclid p q
+ *  Compilation:  javac week1.Euclid.java
+ *  Execution:    java week1.Euclid p q
  *  
  *  Reads two command-line arguments p and q and computes the greatest
- *  common divisor of p and q using Euclid's algorithm.
+ *  common divisor of p and q using week1.Euclid's algorithm.
  *
  *  Remarks
  *  -----------

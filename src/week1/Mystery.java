@@ -1,3 +1,5 @@
+package week1;
+
 public class Mystery {
 	public static String mystery(String s){
 		int len = s.length();

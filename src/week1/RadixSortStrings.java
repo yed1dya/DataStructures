@@ -1,3 +1,5 @@
+package week1;
+
 import java.util.Arrays;
 
 public class RadixSortStrings {
@@ -6,9 +8,10 @@ public class RadixSortStrings {
         // -97
         //System.out.println((int)'a'-96);
         String[] w = {"the", "tell", "be", "be", "be", "", "not", "or", "to", "toes", "to", "aqua", "car", "digging"};
-        //CountingSort(w, 0);
-        radixSort(w);
-        System.out.println(Arrays.toString(w));
+        //week1.CountingSort(w, 0);
+        String[] a = {"to","be","or","not","to","be","that","is","a","question"};
+        radixSort(a);
+        System.out.println(Arrays.toString(a));
     }
 
     public static void radixSort(String[] arr){

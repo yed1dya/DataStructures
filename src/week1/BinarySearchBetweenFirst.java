@@ -1,3 +1,5 @@
+package week1;
+
 public class BinarySearchBetweenFirst {
 	public static int binarySearchBetween(int []arr, int value){
 		/**

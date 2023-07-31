@@ -1,3 +1,5 @@
+package week1;
+
 public class MyLibrary {
 /**
  * print character array
