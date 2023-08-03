@@ -1,5 +1,5 @@
 package week2;
-
+import java.util.Stack;
 import java.util.ArrayList;
 
 public class MyStackArrayList<T> {
@@ -29,7 +29,7 @@ public class MyStackArrayList<T> {
     }
 
     public void clear(){
-        stack = new ArrayList<>();
+        stack.clear();
         size = 0;
     }
 }
