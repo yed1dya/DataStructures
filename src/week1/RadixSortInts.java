@@ -8,7 +8,7 @@ public class RadixSortInts {
         radixSort(arr);
         System.out.println(Arrays.toString(arr));
     }
-    private static void radixSort(int[] arr){
+    public static void radixSort(int[] arr){
         int[] negativeArr = new int[arr.length];
         int[] positiveArr = new int[arr.length];
         int n=0, p=0;

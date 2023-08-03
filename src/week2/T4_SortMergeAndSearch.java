@@ -5,21 +5,33 @@ import week1.MyRadixSortInts;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 
-public class SortMergeAndSearch {
+import static java.util.Arrays.sort;
+
+public class T4_SortMergeAndSearch {
     public static void main(String[] args) {
         int[] a={1,8,15}, b ={3,4, 10,11}, c={5, 7,9},
                 d = {1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 15},
                 e = {1, 2, 2, 3, 4, 5, 7, 8, 9, 10, 11, 15},
-                f = {1, 3, 5, 7, 9, 11, 13, 15, 17};
-        System.out.println(Arrays.toString(Q1(a, b, c)));
-        System.out.println(Arrays.toString(Q1opt(a, b, c)));
+                f = {1,1,3,4,5},
+                g = {1,2,3,4,5,6,7,8,10,10,11,12,13,13,15,20};
+//        System.out.println(Arrays.toString(Q1(a, b, c)));
+//        System.out.println(Arrays.toString(Q1opt(a, b, c)));
         System.out.println(Q2(d));
         System.out.println(Q2(e));
-        System.out.println(Q4(d, 2));
-        System.out.println(Q4(d, 9));
-        System.out.println(Q4(d, 19));
-        System.out.println(Arrays.toString(Q5(d, f)));
+        System.out.println(Q2(f));
+        System.out.println(Q2(g));
+//        System.out.println(Q4(d, 2));
+//        System.out.println(Q4(d, 9));
+//        System.out.println(Q4(d, 19));
+//        System.out.println(Arrays.toString(Q5(d, f)));
+//        Point[] points = {new Point(0,5), new Point(5,0),
+//                new Point(-5,0), new Point(0,-5),
+//                new Point(4,-3), new Point(3,-4),
+//                new Point(-4,3), new Point(-4,-3),
+//                new Point(3,4)};
+//        Q3(points);
     }
     public static int[] Q5(int[] a, int[] b){
         // radix sort - O(n)
@@ -62,26 +74,43 @@ public class SortMergeAndSearch {
         }
         return false;
     }
-    public static boolean Q3(Point[] p){
-        /*
-        sort - n log n
-        2 sided search = for pair with sum that is equal to (0,0)
-        sort:
-        if y>0 - bigger x is bigger
-        if y<0 - smaller x is bigger
-         */
+    // TODO Q3
+    public static boolean Q3(Point[] points){
+        Comparator<Point> c = (p1, p2) -> {
+            // 1: p1 comes first
+            double x1=p1.x, y1=p1.y, x2=p2.x, y2=p2.y;
+            if(x1==x2 && y1==y2) return 0;
+            if(y1<=0 && y2<=0){
+                if(x1<x2) return -1;
+                if(x1>x2) return 1;
+            }
+            if(y1>0 && y2>0){
+                if(x1<x2) return -1;
+                if(x1>x2) return 1;
+            }
+            if(y1>=0 && y2<=0){
+                if(x1>0) return 1;
+                if(x1<0) return -1;
+            }
+            if(y1<=0 && y2>=0){
+                if(x2>0) return -1;
+                if(x2<0) return 1;
+            }
+            return 0;
+        };
+        sort(points, c.reversed());
+        System.out.println(Arrays.toString(points));
         return false;
     }
     public static boolean Q2(int[] a){
-        int start=0, end=a.length-1;
-        while(start<=end){
-            int n = (start+end)/2, t = a[n];
-            if(t==n){
-                System.out.println(n);
+        if(a==null) return false;
+        int mid = (a.length-1)/2;
+        while(mid<a.length-1){
+            if(a[mid]<=mid){
+                System.out.println(mid);
                 return true;
             }
-            if(t<n) end=n-1;
-            if(t>n) start=n+1;
+            mid = (a.length+mid)/2;
         }
         return false;
     }

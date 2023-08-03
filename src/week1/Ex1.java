@@ -1,7 +1,7 @@
+// 207404997, 325168870
 package week1;
-
 /**
- * @author 207404997
+ * @author 207404997_325168870
  */
 public class Ex1 {
     public static void main(String[] args) {
@@ -23,6 +23,7 @@ public class Ex1 {
     }
 
     /**
+     * funds the range of 'k' in 'arr'
      * uses 2 binary search helper functions.
      * @param arr array to search
      * @param k target integer
