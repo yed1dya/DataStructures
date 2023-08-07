@@ -1,5 +1,7 @@
 // 20404997
-package week3;
+package exe;
+
+import week3.Point;
 
 import java.util.ArrayList;
 

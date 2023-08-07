@@ -1,5 +1,5 @@
 // 207404997
-package week3;
+package exe;
 
 import java.util.Stack;
 
@@ -17,7 +17,6 @@ public class Ex2_3 {
             System.out.println(q.deQueue() + ", ");
         }
     }
-
 }
 
 /**

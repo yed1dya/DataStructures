@@ -1,5 +1,5 @@
 // 207404997
-package week3;
+package exe;
 
 public class Ex2_2 {
     public static void main(String[] args) {
