@@ -1,26 +1,28 @@
 package week3;
 
-class Point {
-    private final double x, y;
+public class Point {
+	public double _x, _y;
+	public Point (double x1, double y1){
+		_x = x1;
+		_y = y1;
+	}
+	public Point (Point p){
+		this(p.x(), p.y());
+	}
+	public double x() {return _x;}
+	public double y() {return _y;}
 
-    public Point(double x, double y) {
-        this.x = x;
-        this.y = y;
-    }
+	public String toString() {
+		return " [" + _x + "," + _y+"]";
+	}
 
-    public double x() {
-        return this.x;
-    }
+	public boolean equals(Point p){
+		return p._x==_x && p._y==_y;
+	}
+	public double dist0(){
+		return Math.sqrt(_x*_x + _y*_y);
+	}
 
-    public double y() {
-        return this.y;
-    }
-
-    public String toString() {
-        return " [" + this.x + "," + this.y + "]";
-    }
-
-    public boolean equals(Point p) {
-        return p.x == this.x && p.y == this.y;
-    }
+	public static void main(String[] args) {
+	}
 }
