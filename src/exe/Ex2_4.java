@@ -13,7 +13,7 @@ public class Ex2_4 {
         root.right.left = new Node(7);
         root.right.left.left = new Node(13);
         String path = maxSumPath(bt);
-        System.out.println("max sum: "+maxSum(bt)+"\nmax sum path = "+path);
+        System.out.println("max sum path = "+path);
     }
 
     /**
@@ -22,7 +22,7 @@ public class Ex2_4 {
      * @return String representing the path that gives the max sum
      */
     public static String maxSumPath(BinaryTree tree) {
-        return maxSumPath(tree.getRoot(), "");
+        return maxSumPath(tree.getRoot(), "") + "\nmax sum = "+maxSum(tree);
     }
 
     /**
@@ -72,7 +72,7 @@ class Node{
         this.left = null;
         this.right = null;
     }
-    public String toString(){return data +", ";}
+    public String toString(){return data+", ";}
     public Integer getData() {return data;}
     public Node getLeft() {return left;}
     public Node getRight() {return right;}

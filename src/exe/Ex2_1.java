@@ -1,8 +1,6 @@
 // 20404997
 package exe;
 
-import week3.Point;
-
 import java.util.ArrayList;
 
 public class Ex2_1 {
@@ -16,6 +14,7 @@ public class Ex2_1 {
     /**
      * a point P is defined as a maximum point if:
      * for every other point Q in the array, P.x >= Q.x or P.y >= Q.y
+     * in this assignment, points only have non-negative values.
      * Algorithm:
      * sorts array by X value.
      * iterates over array from right:
@@ -104,3 +103,29 @@ public class Ex2_1 {
     }
 }
 
+class Point {
+    public double _x, _y;
+    public Point (double x1, double y1){
+        _x = x1;
+        _y = y1;
+    }
+    public Point (week3.Point p){
+        this(p.x(), p.y());
+    }
+    public double x() {return _x;}
+    public double y() {return _y;}
+
+    public String toString() {
+        return " [" + _x + "," + _y+"]";
+    }
+
+    public boolean equals(week3.Point p){
+        return p._x==_x && p._y==_y;
+    }
+    public double dist0(){
+        return Math.sqrt(_x*_x + _y*_y);
+    }
+
+    public static void main(String[] args) {
+    }
+}

@@ -10,14 +10,14 @@ public class MyQueue {
 		front = 0;
 		tail = 0;
 		size = 0;
-		data = new Integer[maxSize];;
+		data = new Integer[maxSize];
 	}
 	public  MyQueue(int maxSize){
 		this.maxSize = maxSize;
 		front = 0;
 		tail = 0;
 		size = 0;
-		data = new Integer[maxSize];;
+		data = new Integer[maxSize];
 	}
 	// check if the queue is empty
 	public  boolean isEmpty(){
@@ -82,7 +82,7 @@ public class MyQueue {
 		if(q.enqueue(99))
 			System.out.println("insert 99: front= "+q.front + ", tail= "+q.tail);		
 		System.out.println(q);
-		if(q.enqueue(999));
+		if(q.enqueue(999))
 			System.out.println("insert 999: front= "+q.front + ", tail= "+q.tail);
 		System.out.println(q);
 	}

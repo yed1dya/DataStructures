@@ -16,4 +16,7 @@ public class Node{
 		return "data: "+data+" ";
 	}
 
+    public boolean isLeaf() {
+		return left==null && right==null;
+    }
 }

@@ -22,7 +22,7 @@ public class Ex1 {
     }
 
     /**
-     * funds the range of 'k' in 'arr'
+     * finds the range of 'k' in 'arr'
      * uses 2 binary search helper functions.
      * @param arr array to search
      * @param k target integer
