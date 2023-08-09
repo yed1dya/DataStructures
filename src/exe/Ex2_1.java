@@ -27,7 +27,7 @@ public class Ex2_1 {
      */
     public static ArrayList<Point> maxima(Point[] points) {
         ArrayList<Point> ans = new ArrayList<>();
-        // base cases: null, length 0, length 1
+        // base cases: null, length 0, length 1:
         if(points==null || points.length==0) return ans;
         int length = points.length;
         if(length==1){
@@ -99,6 +99,7 @@ public class Ex2_1 {
         Point t = points[++i];
         points[i] = points[end];
         points[end] = t;
+        // return pivot index:
         return i;
     }
 }

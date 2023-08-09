@@ -66,57 +66,36 @@ public class Ex2_2 {
         int[] ans = new int[l];
         int i=0, j=0, k=0, p=0;
         while (p<l){
+            // compare elements from all 3 arrays:
             if(i<aLen && j<bLen && k<cLen){
                 if(a[i]<=b[j]){
-                    if(a[i]<=c[k]){
-                        ans[p++] = a[i++];
-                    }
-                    else{
-                        ans[p++] = c[k++];
-                    }
+                    if(a[i]<=c[k]) ans[p++] = a[i++];
+                    else ans[p++] = c[k++];
                 }
                 else{
-                    if(b[j]<=c[k]){
-                        ans[p++] = b[j++];
-                    }
-                    else{
-                        ans[p++] = c[k++];
-                    }
+                    if(b[j]<=c[k]) ans[p++] = b[j++];
+                    else ans[p++] = c[k++];
                 }
             }
+            // if one of the arrays has reached the end:
+            // take from the other 2 arrays:
             else if(i<aLen && j<bLen){
-                if(a[i]<=b[j]){
-                    ans[p++] = a[i++];
-                }
-                else{
-                    ans[p++] = b[j++];
-                }
+                if(a[i]<=b[j]) ans[p++] = a[i++];
+                else ans[p++] = b[j++];
             }
             else if(i<aLen && k<cLen){
-                if(a[i]<=c[k]){
-                    ans[p++] = a[i++];
-                }
-                else{
-                    ans[p++] = c[k++];
-                }
+                if(a[i]<=c[k]) ans[p++] = a[i++];
+                else ans[p++] = c[k++];
             }
             else if(j<bLen && k<cLen){
-                if(b[j]<=b[j]){
-                    ans[p++] = b[j++];
-                }
-                else{
-                    ans[p++] = c[k++];
-                }
+                if(b[j]<=b[j]) ans[p++] = b[j++];
+                else ans[p++] = c[k++];
             }
-            else if(i<aLen){
-                ans[p++] = a[i++];
-            }
-            else if(j<bLen){
-                ans[p++] = b[j++];
-            }
-            else if(k<cLen){
-                ans[p++] = c[k++];
-            }
+            // if 2 arrays have reached the end:
+            // take from the last array:
+            else if(i<aLen) ans[p++] = a[i++];
+            else if(j<bLen) ans[p++] = b[j++];
+            else if(k<cLen) ans[p++] = c[k++];
         }
         return ans;
     }
