@@ -2,7 +2,8 @@ package sandbox;
 
 public class Node<T extends Comparable<T>> {
     private T data;
-    private Node<T> left, right;
+    private Node<T> left, right, parent;
+    private boolean color;
     private int height;
     public Node(T d) {
         this.data = d;
@@ -43,5 +44,23 @@ public class Node<T extends Comparable<T>> {
     }
     public int height(){
         return height;
+    }
+    public boolean isLeft(){
+        return this==this.parent.left;
+    }
+    public void flip(){
+        this.color = !this.color;
+    }
+    public boolean color(){
+        return this.color;
+    }
+    public void setColor(boolean color){
+        this.color = color;
+    }
+    public void setParent(Node<T> parent){
+        this.parent = parent;
+    }
+    public Node<T> parent(){
+        return this.parent;
     }
 }

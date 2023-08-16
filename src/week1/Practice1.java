@@ -39,10 +39,10 @@ public class Practice1 {
         return y;
     }
 
-    public static double nth(int n, double[] arr){
+    public static int nth(int n, int[] arr){
         for(int i=0; i< arr.length; i++){
             int count=0;
-            double x=arr[i];
+            int x=arr[i];
             for(int j=i; j< arr.length; j++){
                 if(arr[j]>x) count++;
             }
@@ -57,6 +57,22 @@ public class Practice1 {
         complexity: O(n^2)
          */
         return 0;
+    }
+
+    public static int Q1(int[] arr, int n){
+        int max = arr[0];
+        for(int i : arr){
+            max = Math.max(max, i);
+        }
+        int[] t = new int[max+1];
+        for (int j : arr) {
+            t[j]++;
+        }
+        for(int i : t){
+            if(i>0) n--;
+            if(n==0) return i;
+        }
+        return -1;
     }
 
     public static void Q2(String[] words){

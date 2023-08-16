@@ -1,10 +1,12 @@
 package week2;
 
+import java.util.Stack;
+
 public class T6_Stack {
     public static void main(String[] args) {
         System.out.println(Q1("svragbaer"));
+        System.out.println(Q1("sv(5*12)ra{<g}3b[ae]r>"));
         System.out.println(Q1("sv(5*12)ra<{g}3b[ae]r>"));
-        System.out.println(Q1("sv(5*12)ra<{g}3b[ae]]r>"));
         System.out.println(Q2(543.345));
         System.out.println(Q2(543.543));
         System.out.println(Q2(1543.345));
@@ -44,31 +46,19 @@ public class T6_Stack {
     }
     public static boolean Q1(String s){
         if(s==null) return true;
-        Stack1<Boolean> round = new Stack1<>();
-        Stack1<Boolean> square = new Stack1<>();
-        Stack1<Boolean> squiggle = new Stack1<>();
-        Stack1<Boolean> triangle = new Stack1<>();
-        for(int i=0; i<s.length(); i++){
+        Stack<Character> stack = new Stack<>();
+        int length = s.length();
+        for(int i=0; i<length; i++){
             char c = s.charAt(i);
-            switch (c){
-                case '(' -> round.push(true);
-                case ')' -> {
-                    if(!round.tryPop()) return false;
-                }
-                case '[' -> square.push(true);
-                case ']' -> {
-                    if(!square.tryPop()) return false;
-                }
-                case '{' -> squiggle.push(true);
-                case '}' -> {
-                    if(!squiggle.tryPop()) return false;
-                }
-                case '<' -> triangle.push(true);
-                case '>' -> {
-                    if(!triangle.tryPop()) return false;
+            if(c=='(' || c=='{' || c=='[' || c==')' || c==']' || c=='}' || c=='>' || c=='<') {
+                if (c == '(' || c == '{' || c == '[' || c=='<') stack.push(c);
+                else {
+                    if (stack.isEmpty()) return false;
+                    char t = stack.pop();
+                    if ((t == '(' && c != ')') || (t == '[' && c != ']') || (t == '{' && c != '}') || (t == '<' && c != '>')) return false;
                 }
             }
         }
-        return true;
+        return stack.isEmpty();
     }
 }

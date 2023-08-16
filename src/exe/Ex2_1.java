@@ -34,16 +34,19 @@ public class Ex2_1 {
             ans.add(points[0]);
             return ans;
         }
-        // sort array by X value:
+        // sort array by X value (use helper function):
         sortByX(points, 0, points.length-1);
+        // add the last point and set starting values to compare to:
         ans.add(points[length-1]);
-        double max = 0, tX = points[length-1].x(), tempMax = 0;
-        // iterate from right:
+        double max = 0, // the biggest Y value we've encountered
+                tX = points[length-1].x(), // the current X value
+                tempMax = 0; // the Y value to compare to
+        // iterate from end of array:
         for(int i=length-2; i>=0; i--){
             double x = points[i].x(), y = points[i].y();
             // if it's the same X value:
             if(x==tX){
-                // update max
+                // update max:
                 max = Math.max(y, max);
                 // if Y value is bigger than tempMax:
                 if(y>=tempMax) {

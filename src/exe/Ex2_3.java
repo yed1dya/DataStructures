@@ -23,7 +23,7 @@ public class Ex2_3 {
  * uses 2 stacks to implement a queue.
  * stack1 is the queue. enQueue is just pushing an item into the stack.
  * deQueue is copying stack1 into stack2 (order will be reversed),
- * then pop-ing the last element (the first one that was queued),
+ * then popping the last element (the first one that was queued),
  * then copying stack2 into stack1 (order is reversed again).
  */
 class Queue2Stacks {

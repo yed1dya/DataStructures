@@ -13,37 +13,27 @@ public class Ex2_4 {
         root.right.left = new Node(7);
         root.right.left.left = new Node(13);
         System.out.println(maxSumPath(bt));
-        System.out.println(maxSumPath2(bt));
-        System.out.println();
 
-        Node r = new Node(1);
-        r.left = new Node(Integer.MAX_VALUE);
-        r.right = new Node(0);
-        BinaryTree bt1 = new BinaryTree(r);
-        System.out.println(maxSumPath(bt1));
-        System.out.println(maxSumPath2(bt1));
-        System.out.println();
-
+        // variety of test cases:
         Node a = new Node(5);
         a.right = new Node(4);
         a.right.right = new Node(9);
         a.right.right.right = new Node(12);
         a.left = new Node(40);
+        System.out.println();
         System.out.println(maxSumPath(new BinaryTree(a)));
-        System.out.println(maxSumPath2(new BinaryTree(a)));
         System.out.println();
 
         Node b = new Node(5);
         b.left = new Node(12);
         b.right = new Node(12);
         System.out.println(maxSumPath(new BinaryTree(b)));
-        System.out.println(maxSumPath2(new BinaryTree(b)));
         System.out.println();
 
         System.out.println(maxSumPath(null));
-        System.out.println(maxSumPath2(null));
+        System.out.println();
         System.out.println(maxSumPath(new BinaryTree(new Node(0))));
-        System.out.println(maxSumPath2(new BinaryTree(new Node(0))));
+        System.out.println();
 
         Node c = new Node(2);
         c.left = new Node(100);
@@ -59,80 +49,61 @@ public class Ex2_4 {
         c.right.right.left.left = new Node(11);
         c.right.right.right = new Node(84);
         System.out.println(maxSumPath(new BinaryTree(c)));
-        System.out.println(maxSumPath2(new BinaryTree(c)));
+        System.out.println();
+
+        Node d = new Node(1);
+        d.left = new Node(2);
+        d.right = new Node(4);
+        d.left.left = new Node(20);
+        d.left.right = new Node(12);
+        d.left.right.left = new Node(3);
+        d.left.right.right = new Node(0);
+        System.out.println(maxSumPath(new BinaryTree(d)));
     }
 
     /**
-     * uses helper function
-     * @param tree BinaryTree to search
+     * uses helper functions:
+     * update the max sum of each node O(n)
+     * find the path to the largest sum O(n)
+     * in addition, this required adding 'maxSum' field to 'Node' class.
+     * @param tree tree to search
      * @return String representing the path that gives the max sum
      */
-    public static String maxSumPath(BinaryTree tree) {
-        if (tree == null) return "empty tree";
-        return "max sum path = " + maxSumPath(tree.getRoot(), new info(0, "")).path + "\nmax sum = " + maxSum(tree);
+    public static String maxSumPath(BinaryTree tree){
+        if (tree == null) return "Empty tree.\nmax sum path = \nmax sum =  ";
+        updateMaxSums(tree.getRoot());
+        return "max sum path = " + findMaxSum(tree.getRoot(), "") + "\nmax sum = " + tree.getRoot().maxSum();
     }
-    public static String maxSumPath2(BinaryTree tree) {
-        if (tree == null) return "empty tree";
-        return "max sum path = " + maxSumPath(tree.getRoot(), "") + "\nmax sum = "+maxSum(tree);
-    }
-    private static String maxSumPath(Node n, String s){
-        // base cases:
-        if(n==null || n.isLeaf()) return s;
-        // check which subtree has the greater sum:
-        int leftSum = maxSum(n.left), rightSum = maxSum(n.right);
-        // call maxSumPath recursively and add the direction to path:
-        if(leftSum>=rightSum) return maxSumPath(n.left, s+"L");
-        return maxSumPath(n.right, s+"R");
-    }
-    private static info maxSumPath(Node n, info i){
-        // base cases:
-        if(n==null) return i;
-        if(n.isLeaf()) return new info(i.sum+ n.getData(), i.path);
-        // check which subtree has the greater sum:
-        info left = maxSumPath(n.left, i);
-        info right = maxSumPath(n.right, i);
-        //System.out.println("left: "+left.sum+", right: "+right.sum);
-        // if left side has a greater sum:
-        if(left.sum>=right.sum) return new info(left.sum+n.getData(), "L"+left.path);
-        // if right side has a greater sum:
-        return  new info(right.sum+n.getData(), "R"+right.path);
-    }
-    /**
-     * uses helper function
-     * @param tree BinaryTree to search
-     * @return the largest possible sum from a single path
-     */
-    public static int maxSum(BinaryTree tree){
-        return maxSum(tree.getRoot());
-    }
-    /**
-     * helper function for maxSum(BinaryTree tree)
-     * @param n current node
-     * @return the largest possible sum from a single path in the subtree
-     */
-    private static int maxSum(Node n){
-        // base case:
-        if(n==null) return 0;
-        // recursive call on left and right subtrees:
-        return n.getData()+Math.max(maxSum(n.left), maxSum(n.right));
-    }
-}
 
-class info{
-    public int sum;
-    public String path;
-    public info(int sum, String path){
-        this.sum = sum;
-        this.path = path;
+    /**
+     * helper function to update the max sum of every node
+     * @param n root node
+     * @return max sum of the node
+     */
+    private static int updateMaxSums(Node n){
+        if(n==null) return 0;
+        int sum = n.getData()+Math.max(updateMaxSums(n.left), updateMaxSums(n.right));
+        n.setMaxSum(sum);
+        return sum;
     }
-    public info(info i){
-        this.path = i.path;
-        this.sum = i.sum;
+
+    /**
+     * helper function to find the path to the max sum
+     * @param n current node
+     * @param s the current path
+     * @return string representing the path to the max sum
+     */
+    private static String findMaxSum(Node n, String s){
+        if(n==null || n.isLeaf()) return s;
+        if(n.right==null || (n.left!=null && n.left.maxSum()>=n.right.maxSum())){
+            return findMaxSum(n.left, s+"L");
+        }
+        return findMaxSum(n.right, s+"R");
     }
 }
 
 class Node{
-    private int data;
+    private int data, maxSum;
     protected Node left, right;
     Node(int data){
         this.data = data;
@@ -145,6 +116,12 @@ class Node{
     public Node getRight() {return right;}
     public boolean isLeaf() {
         return left==null && right==null;
+    }
+    public int maxSum(){
+        return maxSum;
+    }
+    public void setMaxSum(int sum){
+        this.maxSum = sum;
     }
 }
 class BinaryTree {
