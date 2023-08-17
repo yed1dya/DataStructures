@@ -15,10 +15,10 @@ public class T3_BinarySearchAndSort {
         String[] c = {"also", "boaz","green", "me"};
         System.out.println(Arrays.toString(same(a, b, c)));
         System.out.println(Q4(arr));
-        game();
         Q5(arr);
         Q5(arr2);
         Q5(arr3);
+        game();
     }
     public static void Q5(int[] arr){
         if(arr==null||arr.length==0) return;
@@ -81,18 +81,20 @@ public class T3_BinarySearchAndSort {
             }
             while (!(input.equals("1")||input.equals("2")||input.equals("3"))){
                 System.out.println("enter only 1-3");
-                if(input.equals("q"){
+                if(input.equals("q")){
                     quit=true;
-                	System.out.println("bye!");
-                	break;
+                    System.out.println("bye!");
+                    break;
                 }
-                input = in.next();
+                if(!quit){
+                    input = in.next();
+                }
             }
             if(!quit){
-            int num = Integer.parseInt(input);
-            if(num==2) break;
-            if(num==1) end=mid-1;
-            else start=mid+1;
+                int num = Integer.parseInt(input);
+                if(num==2) break;
+                if(num==1) end=mid-1;
+                else start=mid+1;
             }
         }
         if(!quit) {
