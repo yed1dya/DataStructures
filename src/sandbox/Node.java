@@ -63,4 +63,7 @@ public class Node<T extends Comparable<T>> {
     public Node<T> parent(){
         return this.parent;
     }
+    public int compare(Node<T> other){
+        return this.data.compareTo(other.data());
+    }
 }

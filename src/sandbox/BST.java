@@ -143,4 +143,51 @@ public class BST<T extends Comparable<T>> {
     private boolean isEmpty() {
         return root==null;
     }
+    public boolean isBST(){
+        return isBST(this.root, this.min(), this.max());
+    }
+    private boolean isBST(Node<T> root, T min, T max){
+        if(root==null) return true;
+        if(root.data().compareTo(min)<0 || root.data().compareTo(max)>0) return false;
+        return isBST(root.left(), min, root.data()) && isBST(root.right(), root.data(), max);
+    }
+    private T max(){
+        if(root==null) return null;
+        Node<T> ans = this.root;
+        while(ans.right()!=null){
+            ans = ans.right();
+        }
+        return ans.data();
+    }
+    private T min(){
+        if(root==null) return null;
+        Node<T> ans = this.root;
+        while(ans.left()!=null){
+            ans = ans.left();
+        }
+        return ans.data();
+    }
+    public void mirror(){
+        mirror(root);
+    }
+    public void mirror(Node<T> root){
+        if(root == null) return;
+        swap(root);
+        mirror(root.right());
+        mirror(root.left());
+    }
+    private void swap(Node<T> root){
+        Node<T> t = root.left();
+        root.setLeft(root.right());
+        root.setRight(t);
+    }
+    public Node<T> LCA(Node<T> a, Node<T> b){
+        return LCA(this.root, a, b);
+    }
+    private Node<T> LCA(Node<T> node, Node<T> a, Node<T> b){
+        if(node==null) return null;
+        if(a.compare(node)<0 && b.compare(node)<0) return LCA(node.left(), a, b);
+        if(a.compare(node)>0 && b.compare(node)>0) return LCA(node.left(), a, b);
+        return node;
+    }
 }

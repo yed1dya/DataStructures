@@ -2,11 +2,12 @@ package week4;
 
 public class Binary {
     public static void main(String[] args) {
+        System.out.println(DecToBi(19));
         System.out.println("0 --> "+DecToBi(0));
         System.out.println("1 --> "+DecToBi(1));
         System.out.println("2 --> "+DecToBi(2));
         System.out.println("3 --> "+DecToBi(3));
-        System.out.println("13 --> "+DecToBi(13));
+        System.out.println("11 --> "+DecToBi(11));
         System.out.println("15 --> "+DecToBi(15));
         System.out.println();
         System.out.println("null --> "+BiToDec(""));
