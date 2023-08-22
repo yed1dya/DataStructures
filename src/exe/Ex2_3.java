@@ -25,6 +25,7 @@ public class Ex2_3 {
  * deQueue is copying stack1 into stack2 (order will be reversed),
  * then popping the last element (the first one that was queued),
  * then copying stack2 into stack1 (order is reversed again).
+ * deQueue returns 0 as default (if Queue is empty).
  */
 class Queue2Stacks {
     Stack<Integer> stack1, stack2;
@@ -46,7 +47,10 @@ class Queue2Stacks {
             stack2.push(stack1.pop());
         }
         // get item to be returned, O(1)
-        int ans = stack2.pop();
+        int ans = 0;
+        if(!stack2.isEmpty()) {
+            ans = stack2.pop();
+        }
         // restore stack1, O(N)
         while (!stack2.isEmpty()){
             stack1.push(stack2.pop());
