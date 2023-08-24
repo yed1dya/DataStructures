@@ -1,10 +1,9 @@
 package week4;
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class MyHashTable {
-    int size;
-    LinkedList<Node>[] students;
+    protected int size;
+    private LinkedList<Node>[] students;
     public MyHashTable(int size){
         this.size = size;
         this.students = new LinkedList[size];
@@ -89,8 +88,8 @@ public class MyHashTable {
 }
 
 class Node{
-    Integer ID;
-    Student data;
+    protected Integer ID;
+    protected Student data;
     public Node(Student student){
         ID = student.ID();
         data = new Student(student);
