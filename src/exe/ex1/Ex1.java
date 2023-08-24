@@ -1,4 +1,4 @@
-package exe;
+package exe.ex1;
 /**
  * @author 207404997_325168870
  */

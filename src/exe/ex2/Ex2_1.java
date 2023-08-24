@@ -1,5 +1,5 @@
 // 20404997
-package exe;
+package exe.ex2;
 
 import java.util.ArrayList;
 
