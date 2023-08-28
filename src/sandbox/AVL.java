@@ -18,6 +18,7 @@ public class AVL<T extends Comparable<T>> {
         tree.remove(6);
         tree.inOrder();
         tree.byLevel();
+        tree.preOrder();
     }
     private Node<T> root;
     private StringBuilder str = new StringBuilder();
