@@ -1,6 +1,9 @@
-// 207404997
+// 207404997, 325168870
 package exe.ex3;
 
+/**
+ * @author 207404997, 325168870
+ */
 public class Ex3_4 {
     public static void main(String[] args) {
         // test cases:
@@ -14,20 +17,26 @@ public class Ex3_4 {
         treap.insert(10, 1);
         treap.insert(45, 20);
         treap.preorderTraversePlus();
+        System.out.println(treap.search(10));
+        System.out.println(treap.search(0));
     }
 }
 
 class Treap {
     // variables:
-    private TreapNode root;
+    public TreapNode root;
     //constructor:
     public Treap(){
         root = null;
     }
 
     /**
-     * Complexity: O(log n). insert in BST is O(log n), possible rotation in each step - O(1).
-     * uses helper function: insert new node with a given key and priority into treap:
+     * Inserts a new node with a given key and priority into treap.
+     * Complexity: O(log n) average case/O(n) worst case.
+     * insert in BST is O(log n) in the average case, and O(n) in the worst case.
+     * in addition, this function will possibly add a rotation in each step.
+     * the rotation has no loops and no recursion, so each rotation is O(1).
+     * uses helper function.
      * @param data key for new node
      * @param priority for new node
      * @return the new node
@@ -41,9 +50,10 @@ class Treap {
     }
 
     /**
-     * Complexity: O(log n) - search in BST
-     * search for a key in a given treap
-     * uses helper function
+     * Search for a key in a given treap.
+     * Complexity: same as standard search in BST.
+     * O(log n) in the average case, O(n) in the worst case.
+     * uses helper function.
      * @param key value to find
      * @return true if found
      */
@@ -52,9 +62,9 @@ class Treap {
     }
 
     /**
-     * Complexity: O(n) - visits every node once
-     * preorder traverse plus(root->left->right)
-     * uses helper function
+     * Preorder traverse plus(root->left->right).
+     * Complexity: O(n) - visits every node once.
+     * uses helper function.
      */
     public void preorderTraversePlus(){
         TreapNode.preOrder(root);
@@ -65,7 +75,8 @@ class Treap {
 class TreapNode {
     // variables:
     private int key, priority;
-    private TreapNode left, right;
+    TreapNode left;
+    TreapNode right;
     //constructor:
     public TreapNode(int key, int priority) {
         this.key = key;
@@ -73,10 +84,11 @@ class TreapNode {
     }
 
     /**
-     * recursive helper function for insert.
+     * Recursive helper function for insert.
+     * Complexity: O(log n) or O(n), as explained above.
      * @param root root node
      * @param newNode node to insert
-     * @return root that had the new node inserted after it
+     * @return the updated root
      */
     public static TreapNode insert(TreapNode root, TreapNode newNode){
         // base case:
@@ -116,8 +128,8 @@ class TreapNode {
     }
 
     /**
-     * Complexity: O(log n) - search in BST
-     * helper function for search
+     * Recursive helper function for search.
+     * Complexity: O(log n) or O(n), as explained above.
      * @param node root
      * @param key value to find
      * @return true if found
@@ -134,7 +146,8 @@ class TreapNode {
     }
 
     /**
-     * helper function for preOrder traversal
+     * Recursive helper function for preOrder traversal.
+     * Complexity: O(n), as explained above.
      * @param node root
      */
     public static void preOrder(TreapNode node){
@@ -147,6 +160,12 @@ class TreapNode {
         // recursive call right:
         preOrder(node.right);
     }
+
+    /**
+     * Standard toString method.
+     * Complexity: O(1).
+     * @return String representing a node.
+     */
     public String toString(){
         return "key: "+key+", priority: "+priority;
     }

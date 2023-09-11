@@ -30,7 +30,7 @@ public class BinarySearchFirst {
 		}
 		return -1;
 	}
-	public static int binary_search_recurs(int arr[],int low,int high,int value){
+	public static int binary_search_recurs(int[] arr, int low, int high, int value){
 		if (low <= high){
 			int mid = (low+high)/2;
 			if (value==arr[mid])   return mid;//value was found

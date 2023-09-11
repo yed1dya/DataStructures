@@ -1,7 +1,10 @@
-// 207404997
+// 207404997, 325168870
 package exe.ex3;
 import static exe.ex3.RBTree.*;
 
+/**
+ * @author 207404997, 325168870
+ */
 public class Ex3_3 {
     public static void main(String[] args) {
         // variety of test cases:
@@ -85,6 +88,13 @@ public class Ex3_3 {
         // null tree - true
         System.out.println("true");
         System.out.println("is RB tree? "+isValidRedBlackTree(null));
+
+        tree.root=new Node(15,BLACK);
+        tree.root.right = new Node(20, RED);
+        tree.root.left = new Node(20, RED);
+        tree.root.left.right = new Node(20, BLACK);
+        tree.root.left.left = new Node(20, BLACK);
+        System.out.println(RBTree.blackHeight(tree.root));
     }
 }
 
@@ -97,8 +107,7 @@ class RBTree {
     }
 
     /**
-     * check if a given BST is a RBT
-     * (assume tree is BST)
+     * Checks if a given BST is a RBT (assume the tree is BST).
      * @param tree RBT to check
      * @return true iff tree is a valid RBT
      */
@@ -107,16 +116,16 @@ class RBTree {
         if(tree==null || tree.root==null) return true;
         // if root is red, it's not a RBT:
         if(tree.root.color==RED) return false;
-        // update black heights in tree:
+        // update black heights and red-red flags in tree:
         blackHeight(tree.root);
         // call helper function:
         return isRBT(tree.root);
     }
 
     /**
-     * helper function for isValidRedBlackTree(RBTree tree)
-     * @param node root of subtree
-     * @return true iff node is the root of a valid RBT
+     * Recursive helper function for isValidRedBlackTree.
+     * @param node root of a subtree
+     * @return true iff node is the root of a valid RBT, otherwise false.
      */
     private static boolean isRBT(Node node){
         // base case:
@@ -128,23 +137,25 @@ class RBTree {
     }
 
     /**
-     * helper function: update the black height of each node in the subtree
+     * Recursive helper function for isValidRedBlackTree:
+     * update the black height of each node in the subtree.
      * @param node root of subtree
      * @return the black height of "node"
      */
-    private static int blackHeight(Node node){
+    public static int blackHeight(Node node){
         // null nodes are black by default:
         if(node==null) return 1;
         // check if node is a "red-red" situation; red node and red parent:
         if(node.color==RED && ((node.left!=null && node.left.color==RED) ||
                 (node.right!=null && node.right.color==RED))) node.redRed = true;
         // recursively get black height of children:
-        int LBH = blackHeight(node.left), RBH = blackHeight(node.right);
+        int LeftBH = blackHeight(node.left);
+        int RightBH = blackHeight(node.right);
         // set "balanced" parameter:
-        node.balanced = LBH==RBH;
+        node.balanced = LeftBH==RightBH;
         // set black height:
         // max of right and left black height.
-        node.blackHeight = Math.max(LBH, RBH);
+        node.blackHeight = Math.max(LeftBH, RightBH);
         // if node is black, add 1:
         if(node.color==BLACK) node.blackHeight++;
         return node.blackHeight;
@@ -153,7 +164,7 @@ class RBTree {
 
 class Node {
     public final boolean RED = true, BLACK = false;
-    final Integer key; // associated data
+    final Integer key;
     final boolean color;
     public boolean balanced, redRed;
     Node left, right;
