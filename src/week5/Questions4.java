@@ -5,6 +5,7 @@ public class Questions4 {
         int[] a = new int[]{-11, -4, 0, 1, 2, 5, 14};
         System.out.println(Q2(a));
     }
+    // find i=n[i]
     public static int Q2(int[] n){
         if(n==null || n.length==0) return -1;
         int a=0, b=n.length-1, m;
