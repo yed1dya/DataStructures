@@ -50,6 +50,10 @@ public class Practice {
 //            System.out.println(Q10(i));
 //        }
         System.out.println(Q13(n, 2));
+        System.out.println(smallestDif(new int[]{1,100}, new int[]{4,8,12,15,102,150}));
+        System.out.println(smallestDif(new int[]{1, 10, 15, 20}, new int[]{4, 8, 19, 20}));
+        System.out.println(find(new int[]{-1},-1));
+        System.out.println(find(new int[]{-2,1,100}, new int[]{4,8,12,15,102,150}, 99));
     }
     public static void preorder(Node root){
         preorderHelp(root);
@@ -61,6 +65,7 @@ public class Practice {
         preorderHelp(node.left());
         preorderHelp(node.right());
     }
+    // find place of A[i]=i, complexity O(log n)
     public static int Q1(int[] a){
         if(a==null || a.length == 0) return -1;
         return Q1(a, 0, a.length-1);
@@ -75,6 +80,7 @@ public class Practice {
         return Q1(a, start, mid);
     }
     /*
+    return num of leaves in tree
     Complexity: method is similar to a standard preOrder, O(n)
      */
     public static int Q2(Node node){
@@ -82,6 +88,7 @@ public class Practice {
         if(node.isLeaf()) return 1;
         return Q2(node.left()) + Q2(node.right());
     }
+    // check if digits after dec point are in same order as before point
     public static boolean Q3(String s){
         if(s == null || !s.contains(".")) return true;
         Stack<Character> s1 = new Stack<>(), s2 = new Stack<>();
@@ -100,6 +107,7 @@ public class Practice {
         }
         return (s1.isEmpty() && s2.isEmpty());
     }
+    // merge 2 sorted linkedLists
     public static LinkedList<Integer> Q4(LinkedList<Integer> list1, LinkedList<Integer> list2){
         LinkedList<Integer> ans = new LinkedList<>();
         int i = 0, j = 0;
@@ -115,6 +123,7 @@ public class Practice {
         }
         return ans;
     }
+    // "sort" all items smaller/bigger than val
     public static int[] Q5(int[] a, int val){
         if(a==null || a.length==0) return a;
         int small = 0, big = a.length-1, length = big+1;
@@ -130,10 +139,12 @@ public class Practice {
         }
         return ans;
     }
+    // num of nodes in BT
     public static int Q6(Node node){
         if(node==null) return 0;
         return 1+Q6(node.right())+Q6(node.left());
     }
+    // check if is complete BT
     public static boolean Q7(Node node){
         if(node==null) return true;
         String s = Q7(node,0,"");
@@ -149,11 +160,14 @@ public class Practice {
         if(node.left()==null || node.right()==null) return "nope";
         return Q7(node.left(), height+1, heights)+Q7(node.right(), height+1, heights);
     }
+    // num of leaves in BT
     public static int Q8(Node node){
         if(node==null) return 0;
         if(node.isLeaf()) return 1;
         return Q8(node.left()) + Q8(node.right());
     }
+    // return rounded-down cube root
+    // time O(log n) space O(1)
     public static String Q10(int n){
         return n + ": "+ Q10Help(n);
     }
@@ -168,6 +182,8 @@ public class Practice {
         }
         return (int)m;
     }
+    // return kth element in tree
+    // time O(log n)
     public static Node Q13(Node node, int k){
         if(node==null) return null;
         return Q13help(node, k);
@@ -182,5 +198,39 @@ public class Practice {
         }
         if(node.right()!=null) return Q13help(node.right(), k-(node.size()-leftSize));
         return null;
+    }
+
+    public static int smallestDif(int[] a, int[] b){
+        int i=0, j=0, ans = Math.abs(a[0]-b[0]);
+        while (i < a.length && j < b.length){
+            if(ans==0) return ans;
+            int current = a[i] - b[j], currentAbs = Math.abs(current);
+            if(currentAbs < ans) ans = currentAbs;
+            if(current < 0) i++;
+            else j++;
+        }
+        return ans;
+    }
+
+    public static int find(int[] a, int c){
+        return find(a, c, 0, a.length-1);
+    }
+    public static int find(int[] a, int c, int start, int end){
+        if(start>end) return -1;
+        int j = (start+end)/2, m = a[j];
+        if(m == c) return j;
+        if(m < c) return find(a, c, j+1, end);
+        return find(a, c, start, j-1);
+    }
+
+    public static String find(int[] a, int[] b, int s){
+        int i=0, j=b.length-1,t;
+        while(i<a.length && j>=0){
+            t = a[i]+b[j];
+            if(t==s) return i+", "+j;
+            if(t<s) i++;
+            if(t>s) j--;
+        }
+        return "not found";
     }
 }

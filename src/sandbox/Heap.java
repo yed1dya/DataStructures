@@ -37,4 +37,5 @@ public abstract class Heap<T extends Comparable<T>> implements IHeap<T> {
     protected int left(int i){ return i*2+1; }
     protected int right(int i){ return i*2+2; }
     protected boolean isEmpty(){ return heap.length==0; }
+    public int size(){ return heap.length; }
 }

@@ -39,26 +39,6 @@ public class Practice1 {
         return y;
     }
 
-    public static int nth(int n, int[] arr){
-        for(int i=0; i< arr.length; i++){
-            int count=0;
-            int x=arr[i];
-            for(int j=i; j< arr.length; j++){
-                if(arr[j]>x) count++;
-            }
-            if(count==n) return x;
-        }
-        /*
-        consider 1st
-        compare to rest
-        count how many bigger
-        if equal to n, return
-        else, consider next.
-        complexity: O(n^2)
-         */
-        return 0;
-    }
-
     public static int Q1(int[] arr, int n){
         int max = arr[0];
         for(int i : arr){

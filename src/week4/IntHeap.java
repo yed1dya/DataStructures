@@ -35,7 +35,7 @@ public class IntHeap {
             minHeapify(a, 0, size);
         }
     }
-    protected void decreasKey(int[] a, int i, int key){
+    protected void decreaseKey(int[] a, int i, int key){
         if(key>=a[i]) return;
         a[i] = key;
         while (i>0 && a[parent(i)]>a[i]){
@@ -48,7 +48,7 @@ public class IntHeap {
             resize();
         }
         heap[size++] = Integer.MAX_VALUE;
-        decreasKey(heap, size-1, key);
+        decreaseKey(heap, size-1, key);
     }
 
     private void resize() {
@@ -58,4 +58,7 @@ public class IntHeap {
     protected int parent(int i){ return (i-1)/2; }
     protected int left(int i){ return i*2+1; }
     protected int right(int i){ return i*2+2; }
+    public int size(){
+        return size;
+    }
 }

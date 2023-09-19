@@ -19,13 +19,42 @@ public class AVL<T extends Comparable<T>> {
         tree.inOrder();
         tree.byLevel();
         tree.preOrder();
+
+        AVL<Integer> tr = fromArray(new int[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15});
+        tr.root.updateNodeHeight(tr.root);
+        tr.inOrder();
+        tr.byLevel();
     }
     private Node<T> root;
-    private StringBuilder str = new StringBuilder();
+    private int size;
+    private StringBuilder str;
+    public AVL(){
+        root = null;
+        size = 0;
+        str = new StringBuilder();
+    }
+    public AVL(Node<T> root){
+        this.root = root;
+        size = 1;
+        str = new StringBuilder();
+    }
+    public static AVL<Integer> fromArray(int[] input){
+        if(input==null || input.length==0) return null;
+        return new AVL<>(fromArray(input, 0, input.length-1));
+    }
+    private static Node<Integer> fromArray(int[] input, int a, int b){
+        if(a>b) return null;
+        Node<Integer> newRoot = new Node<>(input[(a+b)/2]);
+        if(a==b) return newRoot;
+        newRoot.setLeft(fromArray(input, a, (a+b)/2-1));
+        newRoot.setRight(fromArray(input, (a+b)/2+1, b));
+        return newRoot;
+    }
     public void insert(T data){
         root = insert(data, root);
     }
     private Node<T> insert(T data, Node<T> node){
+        size++;
         // if root is null, set new node here:
         if(node==null) return new Node<>(data);
         // if data is smaller than root:
@@ -80,15 +109,15 @@ public class AVL<T extends Comparable<T>> {
     private int balance(Node<T> node) {
         return node!=null ? height(node.left())-height(node.right()) : 0;
     }
-
     private void updateHeight(Node<T> node){
         if(node==null) return;
         node.setHeight(1+Math.max(height(node.left()), height(node.right())));
     }
     private int height(Node<T> node){
-        return node!=null ? node.height() : 0;
+        return node!=null ? node.height() : -1;
     }
     public void remove(T data){
+        if(size>0) size--;
         root = remove(data, root);
     }
     private Node<T> remove(T data, Node<T> node){
@@ -160,6 +189,7 @@ public class AVL<T extends Comparable<T>> {
             q.add(root);
             while (!q.isEmpty()){
                 Node<T> temp = q.poll();
+                System.out.print(height(temp)+", "+balance(temp)+"\n");
                 str.append(temp.data()).append(", ");
                 if (temp.left() != null) {
                     q.add(temp.left());
@@ -169,5 +199,24 @@ public class AVL<T extends Comparable<T>> {
                 }
             }
         }
+    }
+    public T max(){
+        if(root==null) return null;
+        Node<T> ans = this.root;
+        while(ans.right()!=null){
+            ans = ans.right();
+        }
+        return ans.data();
+    }
+    public T min(){
+        if(root==null) return null;
+        Node<T> ans = this.root;
+        while(ans.left()!=null){
+            ans = ans.left();
+        }
+        return ans.data();
+    }
+    public int size(){
+        return size;
     }
 }

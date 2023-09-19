@@ -8,7 +8,7 @@ public class Node{
 		left = null;
 		right = null;
 	}
-	public Node(Integer data, Node left, Node right){
+		public Node(Integer data, Node left, Node right){
 		this.data = data;
 		this.left = left;
 		this.right = right;

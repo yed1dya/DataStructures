@@ -66,4 +66,8 @@ public class Node<T extends Comparable<T>> {
     public int compare(Node<T> other){
         return this.data.compareTo(other.data());
     }
+    public int updateNodeHeight(Node<T> root) {
+        if (root == null) return -1;
+        return root.height = 1 + Math.max(updateNodeHeight(root.left), updateNodeHeight(root.right));
+    }
 }

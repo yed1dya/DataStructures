@@ -10,7 +10,7 @@ class Person{
     boolean madmach;
     int taz;
     public Person(boolean madmach, String name, int taz){
-        name = name;
+        this.name = name;
         if(madmach){
             happy = false;
             name = "roni";
