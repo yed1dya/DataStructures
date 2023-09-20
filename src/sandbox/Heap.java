@@ -31,7 +31,9 @@ public abstract class Heap<T extends Comparable<T>> implements IHeap<T> {
         return position==heap.length-1;
     }
     private void resize(int size){
-        System.arraycopy(heap, 0, heap = (T[]) new Comparable[size], 0, size+1);
+        T[] newArr = (T[]) new Comparable[size];
+        System.arraycopy(heap, 0, newArr, 0, heap.length);
+        heap = newArr;
     }
     protected int parent(int i){ return (i-1)/2; }
     protected int left(int i){ return i*2+1; }

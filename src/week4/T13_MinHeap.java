@@ -1,25 +1,40 @@
 package week4;
 
+import java.util.Arrays;
+
 public class T13_MinHeap {
+    public static void main(String[] args) {
+        T13_MinHeap h = new T13_MinHeap(new int[]{2, 4, 6, 0, 1});
+        System.out.println(Arrays.toString(h.heap));
+        h.minHeapInsert(-1);
+        System.out.println(Arrays.toString(h.heap));
+        System.out.println(h.isMinHeap());
+        h.buildMinHeap(h.heap);
+        System.out.println(Arrays.toString(h.heap));
+        System.out.println(h.isMinHeap());
+        System.out.println(h.find(4));
+        System.out.println(h.find(5));
+    }
     private int[] heap;
     private int size;
     public T13_MinHeap(int[] arr){
         heap = new int[arr.length];
         System.arraycopy(arr, 0, heap, 0, arr.length);
+        size = arr.length-1;
     }
     private int parent(int i){
         return (i-1)/2;
     }
-    private int left(int i){
+    private static int left(int i){
         return i*2+1;
     }
-    private int right(int i){
+    private static int right(int i){
         return i*2+2;
     }
-    private int lastParent(int[] arr){
+    private static int lastParent(int[] arr){
         return arr.length/2-1;
     }
-    private void minHeapify(int[] arr, int p, int size){
+    private static void minHeapify(int[] arr, int p, int size){
         int left = left(p), right = right(p), small;
         if(left<size && arr[left]<arr[p]){
             small = left;
@@ -36,8 +51,8 @@ public class T13_MinHeap {
         }
     }
     public void buildMinHeap(int[] arr){
-        int size = arr.length;
-        for(int i=0; i<lastParent(arr); i++){
+        int size = this.size;
+        for(int i=0; i<lastParent(this.heap); i++){
             minHeapify(arr, i, size);
         }
     }
@@ -58,7 +73,7 @@ public class T13_MinHeap {
         }
         return min;
     }
-    private void swap(int[] arr, int x, int y){
+    private static void swap(int[] arr, int x, int y){
         int t = arr[x];
         arr[x] = arr[y];
         arr[y] = t;
@@ -73,12 +88,30 @@ public class T13_MinHeap {
         }
     }
     public void minHeapInsert(int k){
-        resize();
+        if(size==heap.length) resize();
         size++;
         heap[size-1] = Integer.MAX_VALUE;
         decreaseKey(heap, size-1, k);
     }
     private void resize(){
-        System.arraycopy(heap, 0, new int[size*2], 0, size);
+        int[] newArr = new int[size*2];
+        System.arraycopy(heap, 0, newArr, 0, size);
+        heap = newArr;
+    }
+    public boolean isMinHeap(){
+        for(int i=0; i<lastParent(heap); i++){
+            int c = heap[i];
+            if((left(i)<size && c>heap[left(i)]) || (right(i)<size && c>heap[right(i)])) return false;
+        }
+        return true;
+    }
+    // returns index of v
+    public int find(int v){
+        return find(v, 0);
+    }
+    private int find(int v, int place){
+        if(place>=heap.length || heap[place]>v) return -1;
+        if(heap[place]==v) return place;
+        return Math.max(find(v,left(place)), find(v, right(place)));
     }
 }
