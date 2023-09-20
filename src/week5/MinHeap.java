@@ -6,7 +6,7 @@ public class MinHeap {
     public static void main(String[] args) {
         MinHeap h = new MinHeap();
         System.out.println(h.extractMin());
-        int[] a = new int[]{2,4,6,0,1};
+        int[] a = new int[]{2,4,6,0,1}, b = {2,4,6,0,13}, c = {8,3,7,5,94,2};
         System.out.println(isMinHeap(a));
         h = new MinHeap(a);
         h.print();
@@ -24,6 +24,7 @@ public class MinHeap {
         System.out.println(Arrays.toString(a));
         heapSort(a);
         System.out.println(Arrays.toString(a));
+        merge(b,c).print();
     }
 
     int[] heap;
@@ -212,5 +213,17 @@ public class MinHeap {
         if(i<0) return;
         decreaseKey(i, Integer.MIN_VALUE);
         extractMin();
+    }
+
+    public static MinHeap merge(int[] a, int[] b){
+        if(a==null && b==null) return new MinHeap();
+        if(a==null || a.length==0) return new MinHeap(b);
+        if(b==null || b.length==0) return new MinHeap(a);
+        int m = a.length, n = b.length, p = m+n;
+        int[] c = new int[p];
+        System.arraycopy(a, 0, c, 0, m);
+        System.arraycopy(b, 0, c, m, n);
+        System.out.println(Arrays.toString(c));
+        return new MinHeap(c);
     }
 }
